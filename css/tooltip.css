@@ -1,0 +1,13 @@
+.js .tooltip {
+    max-width: 180px;
+    padding: .5rem;
+    border-radius: 2px;
+    font-family: monospace;
+    font-size: .875rem;
+    font-weight: bold;
+    color: #FFF;
+    background-color: rgba(0, 0, 0, 0.6);
+    box-shadow: 0 0 0 2px #FB5, 0 0 0 6px rgba(0, 0, 0, 0.6);
+    position: absolute;
+    z-index: 2;
+}

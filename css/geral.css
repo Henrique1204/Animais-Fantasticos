@@ -1,0 +1,394 @@
+/* Reset */
+*, *::after, *::before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body, h1, h2, ul, li, p, dd, dt, dl {
+    padding: 0;
+    margin: 0;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+ul {
+    list-style: none;
+}
+
+/* Geral */
+body {
+    /* Impedindo o navegador de tentar deixar a font suave */
+    -webkit-font-smoothing: antialiased;
+    color: #222;
+    background-color: #FAF6ED;
+}
+
+.body-container {
+    display: grid;
+    grid-template-columns: 1fr 120px minmax(300px, 800px) 1fr;
+}
+
+/* Menu */
+.menu {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    background-color: #FB5;
+    /* ele começa na linha (linha que divide as colunas, não linha do eixo X) 3 e vai até a linha 5 */
+    grid-column: 3 / 5;
+}
+
+.menu ul {
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.menu li a {
+    padding: 10px;
+    margin-right: 10px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.875rem;
+    font-weight: bold;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: inherit;
+    display: block;
+}
+
+/* Sections */
+.grid-section {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 4rem;
+    grid-column: 2 / 4;
+    display: grid;
+    grid-template-columns: 90px 300px 1fr;
+    gap: 20px;
+}
+
+.titulo {
+    margin-bottom: 1rem;
+    font-family: "Playfair Display SC", Georgia, serif;
+    font-size: 6rem;
+    font-weight: normal;
+    line-height: 1;
+    grid-column: 1 / 4;
+}
+
+/* Animais */
+.animais h2 {
+    margin-bottom: 1rem;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #E54;
+}
+
+.animais h2::before {
+    content: "";
+    width: 40px;
+    height: 10px;
+    margin-right: 10px;
+    background-color: #FB5;
+    display: inline-block;
+}
+
+.animais p {
+    margin-bottom: 1rem;
+    font-family:  Helvetica, Arial, sans-serif;
+    line-height: 1.2;
+}
+
+.animais-lista {
+    height: 370px;
+    grid-column: 2;
+    overflow-y: scroll;
+}
+
+/* Estilo da barra de rolagem, só funciona no chrome e pode bugar */
+.animais-lista::-webkit-scrollbar {
+    width: 18px;
+}
+
+.animais-lista::-webkit-scrollbar-thumb {
+    border-left: 4px solid #FAF6ED;
+    border-right: 4px solid #FAF6ED;
+    background-color: #FB5;
+}
+
+.animais-lista::-webkit-scrollbar-track {
+    background-color: #FAF6ED;
+}
+
+.animais-lista img {
+    cursor: pointer;
+}
+
+.animais-descricao {
+    grid-column: 3;
+    position: relative;
+}
+
+.animais-descricao article {
+    margin-bottom: 3rem;
+}
+
+/* FAQ */
+.faq-lista {
+    grid-column: 2 / 4;
+}
+
+.faq-lista dt {
+    margin-top: 2rem;;
+    font-family: "IBM Plex Mono", monospace;
+    font-weight: bold;
+    color: #E54;
+    cursor: pointer;
+}
+
+.faq-lista dt::before {
+    content: "";
+    width: 20px;
+    height: 10px;
+    margin-right: 10px;
+    background-color: #FB5;
+    display: inline-block;
+}
+
+.faq-lista dd {
+    font-family: Helvetica, Arial, sans-serif;
+    margin-top: 0.5rem;
+    margin-left: 30px;
+}
+
+/* Contato */
+.mapa {
+    grid-column: 2;
+}
+
+.dados {
+    grid-column: 3;
+}
+
+.dados li{
+    margin-bottom: 1rem;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+.dados li::before {
+    content: "";
+    width: 20px;
+    height: 10px;
+    margin-right: 10px;
+    background-color: #FB5;
+    display: inline-block;
+}
+
+.btc-preco {
+    padding: .2rem .5rem;
+    border-radius: 2px;
+    font-weight: bold;
+    background-color: #2F0;
+}
+
+.js [data-semana]::after {
+    content: "";
+    width: 12px;
+    height: 12px;
+    border: 2px solid #222;
+    border-radius: 50%;
+    margin-left: 10px;
+    display: inline-block;
+}
+
+.js [data-semana].aberto::after {
+    background-color: #2F0;
+}
+
+.js [data-semana].fechado::after {
+    background-color: #E54;
+}
+
+/* Footer */
+.copy {
+    margin-bottom: 2rem;
+    background-color: #FB5;
+    grid-column: 3 / 5;
+}
+
+.copy p {
+    padding: 20px;
+    font-family: "IBM Plex Mono", monospace;
+    font-weight: bold;
+}
+
+.copy a {
+    padding: 10px;
+    color: #551A8B;
+    text-decoration: none;
+}
+
+.copy a:hover {
+    text-decoration: underline;
+}
+
+@media only screen and (max-width: 700px) {
+    /* Mudar layout para um coluna */
+    .body-container {
+        grid-template-columns: 1fr;
+    }
+
+    .menu, .grid-section, .copy {
+        grid-column: 1;
+    }
+
+    /* Menu */
+    .menu {
+        margin-top: 0;
+    }
+
+    .menu ul {
+        justify-content: center;
+    }
+
+    /* Sections */
+    .grid-section {
+        grid-template-columns: 100px 1fr;
+        gap: 10px;
+    }
+
+    .grid-section h1 {
+        font-size: 3rem;
+    }
+
+    /* Animais */
+    .animais-lista {
+        grid-column: 1;
+    }
+
+    .animais-descricao {
+        grid-column: 2;
+    }
+
+    /* FAQ */
+    .faq-lista, .dados, .mapa {
+        grid-column: 1 / 3;
+    }
+
+    /* Footer */
+    .copy {
+        margin-bottom: 0;
+        text-align: center;
+    }
+}
+
+@media (max-width: 400px) {
+    .animais-lista {
+        height: 500px;
+    }
+}
+
+/* Animações */
+@keyframes mostrarR {
+    from {
+        opacity: 0;
+        transform: translate3d(-30px, 0, 0);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes mostrarD {
+    from {
+        opacity: 0;
+        transform: translate3d(0, -30px, 0);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes crescer {
+    from {
+        opacity: 0;
+        max-height: 0px;
+    }
+    to {
+        opacity: 1;
+        max-height: 200px;
+    }
+}
+
+@keyframes encolher {
+    from {
+        opacity: 1;
+        max-height: 200px;
+    }
+    to {
+        opacity: 0;
+        max-height: 0px;
+    }
+}
+
+/* JavaScript */
+/* Navegação por Tab -- Animais */
+.js .animais-descricao article.ativo {
+    height: auto;
+}
+
+.js .animais-descricao article.ativo.show-right {
+    animation: mostrarR 0.5s forwards;
+}
+
+.js .animais-descricao article.ativo.show-down {
+    animation: mostrarD 0.5s forwards;
+}
+
+.js .animais-descricao article {
+    height: 0px;
+    overflow: hidden;
+    position: absolute;
+}
+
+/* Accordion Lista -- FAQ */
+.js .faq-lista dt::after {
+    content: "⮧";
+    margin-left: 10px;
+    display: inline-block;
+}
+
+.js .faq-lista dt.ativo::after {
+    content: "⮥";
+}
+
+.js .faq-lista dd {
+    max-height: 0px;
+    overflow: hidden;
+    animation: encolher 0.5s forwards;
+}
+
+.js .faq-lista dd.ativo {
+    max-height: 200px;
+    animation: crescer 0.5s forwards;
+}
+
+/* Animar ao scroll -- Sections */
+.js [data-animarScroll] {
+    opacity: 0;
+    transform: translate3d(-100px, 0, 0);
+    transition: 0.5s all ease;
+}
+
+.js [data-animarScroll].ativo {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+}
