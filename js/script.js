@@ -4,7 +4,7 @@ import animarScroll from "./modules/animar-scroll.js";
 import NavegacaoTab from "./modules/navegacao-tab.js";
 import AccordionList from "./modules/accordion-list.js";
 import Modal from "./modules/modal.js";
-import tooltip from "./modules/tooltip.js";
+import Tooltip from "./modules/tooltip.js";
 import dropdownMenu from "./modules/dropdown-menu.js";
 import menuMobile from "./modules/menu-mobile.js";
 import horarioFuncionamento from "./modules/horario-funcionamento.js";
@@ -23,8 +23,10 @@ navegacaoTab.iniciar();
 const modal = new Modal("[data-modal='container']", "[data-modal='abrir']", "[data-modal='fechar']", "ativo");
 modal.iniciar();
 
+const tooltip = new Tooltip("[data-tooltip]");
+tooltip.iniciar();
+
 animarScroll();
-tooltip();
 dropdownMenu();
 menuMobile();
 horarioFuncionamento();
