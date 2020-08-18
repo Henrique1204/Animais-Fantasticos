@@ -1,16 +1,28 @@
-// Exportando módulos
-export default function iniciarAccordionList() {
-    const accordinList = document.querySelectorAll("[data-accordionList] dt");
-    const classeAtiva = "ativo";
-
-    function ativarAccordion() {
-        this.classList.toggle(classeAtiva);
-        this.nextElementSibling.classList.toggle(classeAtiva);
+export default class AccordionList {
+    constructor(listaItens, classeAtiva) {
+        this.accordinList = document.querySelectorAll(listaItens);
+        this.classeAtiva = (classeAtiva === undefined) ? "ativo" : classeAtiva;
     }
 
-    if (accordinList.length) {
-        accordinList[0].classList.toggle(classeAtiva);
-        accordinList[0].nextElementSibling.classList.toggle(classeAtiva);
-        accordinList.forEach((item) => item.addEventListener("click", ativarAccordion));
+    toggleAccordion(item) {
+        item.classList.toggle(this.classeAtiva);
+        item.nextElementSibling.classList.toggle(this.classeAtiva);
+    }
+
+    addEvento() {
+        if (this.accordinList.length) {
+            this.accordinList.forEach((item) => {
+                item.addEventListener("click", () => this.toggleAccordion(item));
+            });
+        }
+    }
+
+    iniciar() {
+        if (this.accordinList.length) {
+            this.toggleAccordion(this.accordinList[0]);
+            this.addEvento();
+        }
+
+        return this;
     }
 }
