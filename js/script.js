@@ -1,7 +1,7 @@
 // Importando modulos
 import ScrollSuave from "./modules/scroll-suave.js";
 import animarScroll from "./modules/animar-scroll.js";
-import navegacaoTab from "./modules/navegacao-tab.js";
+import NavegacaoTab from "./modules/navegacao-tab.js";
 import AccordionList from "./modules/accordion-list.js";
 import modal from "./modules/modal.js";
 import tooltip from "./modules/tooltip.js";
@@ -17,8 +17,10 @@ scrollSuave.iniciar();
 const accordionList = new AccordionList("[data-accordionList='faq'] dt", "ativo");
 accordionList.iniciar();
 
+const navegacaoTab = new NavegacaoTab("[data-menuTab] li", "[data-conteudoTab] article", "ativo");
+navegacaoTab.iniciar();
+
 animarScroll();
-navegacaoTab();
 modal();
 tooltip();
 dropdownMenu();

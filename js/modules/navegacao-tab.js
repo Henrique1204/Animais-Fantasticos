@@ -1,17 +1,32 @@
-// Exportando módulos
-export default function iniciarNavegacaoTab() {
-    const menuTab = document.querySelectorAll("[data-menuTab] li");
-    const conteudoTab = document.querySelectorAll("[data-conteudoTab] article");
-    const classeAtiva = "ativo";
+export default class NavegacaoTab {
+    constructor(menuTab, conteudoTab, classeAtiva) {
+        this.menuTab = document.querySelectorAll(menuTab);
+        this.conteudoTab = document.querySelectorAll(conteudoTab);
+        this.classeAtiva = classeAtiva;
 
-    function ativarTab(lista, index) {
-        const anime = [lista[index].dataset.anime];
-        lista.forEach((item) => item.classList.remove(classeAtiva));
-        lista[index].classList.add(classeAtiva, anime);
+        this.ativarTab = this.ativarTab.bind(this);
     }
 
-    if (menuTab.length && conteudoTab.length) {
-        ativarTab(conteudoTab, 0);
-        menuTab.forEach((item, index) => item.addEventListener("click", () => ativarTab(conteudoTab, index)));
+    ativarTab(lista, index) {
+        const anime = [lista[index].dataset.anime];
+        lista.forEach((item) => item.classList.remove(this.classeAtiva));
+        lista[index].classList.add(this.classeAtiva, anime);
+    }
+
+    addEvento() {
+        if (this.menuTab.length && this.conteudoTab.length) {
+            this.menuTab.forEach((item, index) => {
+                item.addEventListener("click", () => this.ativarTab(this.conteudoTab, index));
+            });
+        }
+    }
+
+    iniciar() {
+        if (this.menuTab.length && this.conteudoTab.length) {
+            this.ativarTab(this.conteudoTab, 0);
+            this.addEvento();
+        }
+
+        return this;
     }
 }
