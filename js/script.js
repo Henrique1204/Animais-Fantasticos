@@ -1,5 +1,5 @@
 // Importando modulos
-import scrollSuave from "./modules/scroll-suave.js";
+import ScrollSuave from "./modules/scroll-suave.js";
 import animarScroll from "./modules/animar-scroll.js";
 import navegacaoTab from "./modules/navegacao-tab.js";
 import accordionList from "./modules/accordion-list.js";
@@ -11,8 +11,9 @@ import horarioFuncionamento from "./modules/horario-funcionamento.js";
 import animaisFetch from "./modules/animais-fetch.js";
 import bitcoinFetch from "./modules/bitcoin-fetch.js";
 
-// Ativando funções
-scrollSuave();
+const scrollSuave = new ScrollSuave("[data-menu='lista'] a[href^='#']");
+scrollSuave.iniciar();
+
 animarScroll();
 navegacaoTab();
 accordionList();
