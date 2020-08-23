@@ -1,26 +1,38 @@
 import clicarfora from "./outside-click.js";
 
-export default function iniciarMenuMobile() {
-    const btnMenu = document.querySelector("[data-menu='btn'");
-    const menu = document.querySelector("#menu");
-    const eventos = ["click", "touchstart"];
-    const classeAtivo = "ativo";
+export default class MenuMobile {
+    constructor(btnMenu, menu, classeAtivo, eventos) {
+        this.btnMenu = document.querySelector(btnMenu);
+        this.menu = document.querySelector(menu);
+        this.eventos = (eventos === undefined) ? ["click", "touchstart"] : eventos;
+        this.classeAtivo = classeAtivo;
 
-    function abrirMenu(evento) {
+        this.abrirMenu = this.abrirMenu.bind(this);
+    }
+
+    abrirMenu(evento) {
         evento.preventDefault();
 
-        btnMenu.classList.add(classeAtivo);
-        menu.classList.add(classeAtivo);
+        this.btnMenu.classList.add(this.classeAtivo);
+        this.menu.classList.add(this.classeAtivo);
 
-        clicarfora(menu, eventos, () => {
-            btnMenu.classList.remove(classeAtivo);
-            menu.classList.remove(classeAtivo);
+        clicarfora(this.menu, this.eventos, () => {
+            this.btnMenu.classList.remove(this.classeAtivo);
+            this.menu.classList.remove(this.classeAtivo);
         });
     }
 
-    if (btnMenu && menu) {
-        eventos.forEach((item) => {
-            btnMenu.addEventListener(item, abrirMenu);
+    addEventosMenuMobiel() {
+        this.eventos.forEach((item) => {
+            this.btnMenu.addEventListener(item, this.abrirMenu);
         });
+    }
+
+    iniciar() {
+        if (this.btnMenu && this.menu) {
+            this.addEventosMenuMobiel();
+        }
+
+        return this;
     }
 }
