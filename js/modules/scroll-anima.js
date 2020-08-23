@@ -1,14 +1,15 @@
+import debounce from "./debounce.js";
+
 export default class ScrollAnima {
     constructor(sections, classeAtiva) {
         this.sections = document.querySelectorAll(sections);
         this.classeAtiva = classeAtiva;
         this.metadeJanela = window.innerHeight * 0.6;
 
-        this.checarDistancia = this.checarDistancia.bind(this);
+        this.checarDistancia = debounce(this.checarDistancia.bind(this), 50);
     }
 
     getDistancia() {
-        this.teste = "oi";
         this.distancias = [...this.sections].map((section) => {
             const topo = section.offsetTop;
 
@@ -17,6 +18,7 @@ export default class ScrollAnima {
     }
 
     checarDistancia() {
+        console.log('dede');
         this.distancias.forEach((item) => {
             if (window.pageYOffset > item.topo) {
                 item.elemento.classList.add(this.classeAtiva);
