@@ -14,6 +14,7 @@
         "indent": "off",
         "import/extensions": "off",
         "quotes": "off",
-        "no-console": 0
+        "no-console": 0,
+        "no-param-reassign": "off"
     }
 }
