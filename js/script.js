@@ -1,12 +1,12 @@
 // Importando modulos
 import ScrollSuave from "./modules/scroll-suave.js";
-import ScrollAnima from "./modules/scroll-anima.js";
-import NavegacaoTab from "./modules/navegacao-tab.js";
 import AccordionList from "./modules/accordion-list.js";
+import NavegacaoTab from "./modules/navegacao-tab.js";
 import Modal from "./modules/modal.js";
 import Tooltip from "./modules/tooltip.js";
+import ScrollAnima from "./modules/scroll-anima.js";
 import DropdownMenu from "./modules/dropdown-menu.js";
-import menuMobile from "./modules/menu-mobile.js";
+import MenuMobile from "./modules/menu-mobile.js";
 import horarioFuncionamento from "./modules/horario-funcionamento.js";
 import fetchAnimais from "./modules/animais-fetch.js";
 import bitcoinFetch from "./modules/bitcoin-fetch.js";
@@ -29,10 +29,12 @@ tooltip.iniciar();
 const scrollAnima = new ScrollAnima("[data-animarScroll]", "ativo");
 scrollAnima.iniciar();
 
-const dropdownMenu = new DropdownMenu("[data-dropdown]", ["touchstart", "click"], "ativo");
+const dropdownMenu = new DropdownMenu("[data-dropdown]", "ativo", ["click", "touchstart"]);
 dropdownMenu.iniciar();
 
-menuMobile();
+const menuMobile = new MenuMobile("[data-menu='btn']", "#menu", "ativo", ["click", "touchstart"]);
+menuMobile.iniciar();
+
 horarioFuncionamento();
 
 fetchAnimais('../../animaisApi.json', "#numeros .numeros-grid");
