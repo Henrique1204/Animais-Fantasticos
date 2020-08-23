@@ -1,6 +1,6 @@
 // Importando modulos
 import ScrollSuave from "./modules/scroll-suave.js";
-import animarScroll from "./modules/animar-scroll.js";
+import ScrollAnima from "./modules/scroll-anima.js";
 import NavegacaoTab from "./modules/navegacao-tab.js";
 import AccordionList from "./modules/accordion-list.js";
 import Modal from "./modules/modal.js";
@@ -26,7 +26,9 @@ modal.iniciar();
 const tooltip = new Tooltip("[data-tooltip]");
 tooltip.iniciar();
 
-animarScroll();
+const scrollAnima = new ScrollAnima("[data-animarScroll]", "ativo");
+scrollAnima.iniciar();
+
 dropdownMenu();
 menuMobile();
 horarioFuncionamento();
