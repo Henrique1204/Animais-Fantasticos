@@ -5,7 +5,7 @@ import NavegacaoTab from "./modules/navegacao-tab.js";
 import AccordionList from "./modules/accordion-list.js";
 import Modal from "./modules/modal.js";
 import Tooltip from "./modules/tooltip.js";
-import dropdownMenu from "./modules/dropdown-menu.js";
+import DropdownMenu from "./modules/dropdown-menu.js";
 import menuMobile from "./modules/menu-mobile.js";
 import horarioFuncionamento from "./modules/horario-funcionamento.js";
 import fetchAnimais from "./modules/animais-fetch.js";
@@ -29,7 +29,9 @@ tooltip.iniciar();
 const scrollAnima = new ScrollAnima("[data-animarScroll]", "ativo");
 scrollAnima.iniciar();
 
-dropdownMenu();
+const dropdownMenu = new DropdownMenu("[data-dropdown]", ["touchstart", "click"], "ativo");
+dropdownMenu.iniciar();
+
 menuMobile();
 horarioFuncionamento();
 

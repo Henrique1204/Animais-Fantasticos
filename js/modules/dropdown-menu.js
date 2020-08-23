@@ -1,27 +1,37 @@
 import outsideClick from "./outside-click.js";
 
-export default function iniciarDropdownMenu() {
-    const dropdownMenus = document.querySelectorAll("[data-dropdown]");
-    // Evento de click para PC e touchstart para Mobile
-    const eventos = ["touchstart", "click"];
-    const classeAtivo = "ativo";
+export default class DropdownMenu {
+    constructor(dropdownMenus, eventos, classeAtivo) {
+        this.dropdownMenus = document.querySelectorAll(dropdownMenus);
+        this.eventos = (eventos === undefined) ? eventos : ["touchstart", "click"];
+        this.classeAtivo = classeAtivo;
 
-    // Função que faz o menu aparecer e sumir
-    function handleClick(evento) {
+        this.ativarDropdownMenu = this.ativarDropdownMenu.bind(this);
+    }
+
+    ativarDropdownMenu(evento) {
         evento.preventDefault();
-        this.classList.add(classeAtivo);
+        const elemento = evento.currentTarget;
+        elemento.classList.add(this.classeAtivo);
 
-        // Chamada da função que faz o menu sumir
-        outsideClick(this, eventos, () => {
-            this.classList.remove(classeAtivo);
+        outsideClick(elemento, this.eventos, () => {
+            elemento.classList.remove(this.classeAtivo);
         });
     }
 
-    if (dropdownMenus.length) {
-        dropdownMenus.forEach((menu) => {
-            eventos.forEach((item) => {
-                menu.addEventListener(item, handleClick);
+    addEventosDropdownMenu() {
+        this.dropdownMenus.forEach((menu) => {
+            this.eventos.forEach((item) => {
+                menu.addEventListener(item, this.ativarDropdownMenu);
             });
         });
+    }
+
+    iniciar() {
+        if (this.dropdownMenus.length) {
+            this.addEventosDropdownMenu();
+        }
+
+        return this;
     }
 }
