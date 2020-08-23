@@ -30,6 +30,6 @@ animarScroll();
 dropdownMenu();
 menuMobile();
 horarioFuncionamento();
-bitcoinFetch();
 
 fetchAnimais('../../animaisApi.json', "#numeros .numeros-grid");
+bitcoinFetch('https://blockchain.info/ticker', ".btc-preco");
