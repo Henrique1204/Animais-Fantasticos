@@ -18,7 +18,6 @@ export default class ScrollAnima {
     }
 
     checarDistancia() {
-        console.log('dede');
         this.distancias.forEach((item) => {
             if (window.pageYOffset > item.topo) {
                 item.elemento.classList.add(this.classeAtiva);
