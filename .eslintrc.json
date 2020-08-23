@@ -15,6 +15,7 @@
         "import/extensions": "off",
         "quotes": "off",
         "no-console": 0,
-        "no-param-reassign": "off"
+        "no-param-reassign": "off",
+        "max-len": "off"
     }
 }
