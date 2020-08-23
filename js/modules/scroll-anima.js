@@ -4,21 +4,37 @@ export default class ScrollAnima {
         this.classeAtiva = classeAtiva;
         this.metadeJanela = window.innerHeight * 0.6;
 
-        this.animaScroll = this.animaScroll.bind(this);
+        this.checarDistancia = this.checarDistancia.bind(this);
     }
 
-    animaScroll() {
-        this.sections.forEach((section) => {
-            const topo = section.getBoundingClientRect().top - (this.metadeJanela);
+    getDistancia() {
+        this.teste = "oi";
+        this.distancias = [...this.sections].map((section) => {
+            const topo = section.offsetTop;
 
-            if (topo <= 0 && !section.classList.contains(this.classeAtiva)) {
-                section.classList.add(this.classeAtiva);
+            return { elemento: section, topo: Math.floor(topo - this.metadeJanela) };
+        });
+    }
+
+    checarDistancia() {
+        this.distancias.forEach((item) => {
+            if (window.pageYOffset > item.topo) {
+                item.elemento.classList.add(this.classeAtiva);
             }
         });
     }
 
     iniciar() {
-        this.animaScroll();
-        window.addEventListener("scroll", this.animaScroll);
+        if (this.sections.length) {
+            this.getDistancia();
+            this.checarDistancia();
+            window.addEventListener("scroll", this.checarDistancia);
+        }
+
+        return this;
+    }
+
+    stop() {
+        window.removeEventListener("scroll", this.checarDistancia);
     }
 }
