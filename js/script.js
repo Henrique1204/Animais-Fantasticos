@@ -10,6 +10,7 @@ import MenuMobile from "./modules/menu-mobile.js";
 import HorarioFuncionamento from "./modules/horario-funcionamento.js";
 import fetchAnimais from "./modules/animais-fetch.js";
 import bitcoinFetch from "./modules/bitcoin-fetch.js";
+import SlideNav from "./modules/slide.js";
 
 const scrollSuave = new ScrollSuave("[data-menu='lista'] a[href^='#']");
 scrollSuave.iniciar();
@@ -40,3 +41,7 @@ horarioFuncionamento.iniciar();
 
 fetchAnimais('./animaisApi.json', "#numeros .numeros-grid");
 bitcoinFetch('https://blockchain.info/ticker', ".btc-preco");
+
+const slideNav = new SlideNav(".slide", ".slide-wrapper");
+slideNav.iniciar();
+slideNav.addEventoControle(".controle-personalizado");
